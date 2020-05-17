@@ -1,0 +1,14 @@
+{
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.recipes": [{
+        "name": "pdflatex",
+        "tools": [
+          "pdflatex"
+        ]
+      }
+    ],
+    "latex-workshop.viewer.pdf.internal.port": 443,
+    "latex-workshop.viewer.pdf.internal.bindport": 8000,
+    "latex-workshop.viewer.pdf.internal.url": "https://viewer.code.server4.smart-lgt.com",
+    "latex-workshop.viewer.pdf.internal.host": "0.0.0.0",
+}

@@ -1,0 +1,48 @@
+version: '3.4'
+
+services:
+  code-server:
+#    image: linuxserver/code-server
+#    command: --log debug
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - TZ=Europe/London
+#      - PASSWORD=password #optional
+#      - SUDO_PASSWORD=password #optional
+    volumes:
+#      - ./data/config:/config
+       - ./data//config/data/User/:/config/data/User/
+       - ./data/config/workspace:/config/workspace
+    expose:
+      - 443
+    environment:
+        HTTP_ID: 'vscode_dfjk34gdf'
+        HTTP_DOMAIN: 'code.server4.smart-lgt.com'
+        HTTP_PORT: '8443'
+        SSL_LE_DOMAINS: 'code.server4.smart-lgt.com'
+        FORCEHTTPS: 'True'
+        CHECK: 'True'
+
+  viewer:
+    image: nginx
+    volumes:    
+     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - code-server
+    environment:
+        HTTP_ID: 'vscode_latex_viwer_dfjk34gdf'
+        HTTP_DOMAIN: 'viewer.code.server4.smart-lgt.com'
+        HTTP_PORT: '443'
+        SSL_LE_DOMAINS: 'viewer.code.server4.smart-lgt.com'
+        FORCEHTTPS: 'True'
+        CHECK: 'True'
+
+
+networks:
+  default:
+    external:
+      name: network_main_net
